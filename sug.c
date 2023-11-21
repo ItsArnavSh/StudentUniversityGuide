@@ -55,6 +55,7 @@ int main()
         while(1==1)
         {
             adminMenu();
+            accs=1;
         }
     }
     if(accs == 2)
@@ -62,6 +63,7 @@ int main()
         while(1==1)
         {
             facultyMenu();
+            accs = 2;
         }
     }
     if(accs ==3)
@@ -70,6 +72,7 @@ int main()
         {
 
             studentMenu();
+            accs=3;
         }
     }
     return 0;
@@ -329,17 +332,21 @@ void addFaculty()
 {
     if(accs==1)
     {
+    fflush(stdin);
     printf("New Faculty\n");
     printf("Please Enter the name of the faculty: ");
     char name[20];
     scanf("%s",name);
     toUpperCase(name);
+    fflush(stdin);
     printf("Please Enter the password of the faculty: ");
     char password[20];
     scanf("%s",password);
+    fflush(stdin);
     printf("Please enter the Branch of the faculty: ");
     char branch[20];
     scanf("%s",branch);
+    fflush(stdin);
     FILE *file = fopen("faculty.txt", "a");
     if(file == NULL)
     {
@@ -349,9 +356,9 @@ void addFaculty()
     fprintf(file, "%s\n", branch);
     fprintf(file, "%s\n", password);
     fclose(file);
-    printf("Faculty added successfully\n");
     pressEnterToContinue();
     allotFaculty(name,branch);
+    printf("Faculty added successfully\n");
     return;
     }
 }
@@ -690,7 +697,7 @@ int randint(int min_num, int max_num)
         hi_num = min_num;
     }
 
-    srand(time(NULL));
+    srand(time_t(NULL));
     result = (rand() % (hi_num - low_num)) + low_num;
     return result;
 }
